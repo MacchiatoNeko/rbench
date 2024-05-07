@@ -2,7 +2,6 @@
 #include <string>
 #include <unordered_map>
 #include <chrono>
-#include <thread>
 #include <openssl/md5.h>
 #include <openssl/sha.h>
 #include <openssl/rsa.h>
@@ -86,14 +85,9 @@ int main(int argc, char *argv[]) {
     }
 
     int score = 0;
-
-    unsigned int num_cores = std::thread::hardware_concurrency();
-    std::cout << "Number of CPU threads: " << num_cores << std::endl;
-
+    
     std::string plaintext = generateRandomString(blocksize * 1024);
     std::cout << "String generated, starting benchmark now." << std::endl;
-
-    std::this_thread::sleep_for(std::chrono::seconds(1));
 
     // Benchmark MD5
     std::cout << "MD5: ";
