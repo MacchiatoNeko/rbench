@@ -1,11 +1,8 @@
 #include <iostream>
-#include <string>
 #include <unordered_map>
 #include <chrono>
 #include <openssl/md5.h>
 #include <openssl/sha.h>
-#include <openssl/rsa.h>
-#include <openssl/pem.h>
 
 std::string generateRandomString(int length) {
     const char alphanum[] =
@@ -85,7 +82,6 @@ int main(int argc, char *argv[]) {
     }
 
     int score = 0;
-    
     std::string plaintext = generateRandomString(blocksize * 1024);
     std::cout << "String generated, starting benchmark now." << std::endl;
 
@@ -108,6 +104,5 @@ int main(int argc, char *argv[]) {
     score = score + sha256_iterations;
 
     std::cout << "Total Score: " << score << std::endl;
-
     return 0;
 }
